@@ -2,7 +2,9 @@ package io.caster.zhuinden.realmexamples
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import io.realm.Realm
+import io.realm.kotlin.where
 
 class MainActivity : AppCompatActivity() {
     var realm: Realm? = null
@@ -10,7 +12,17 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        realm = Realm.getDefaultInstance()
+        val realm = Realm.getDefaultInstance()
+        this.realm = realm
+        val persons = realm.where<Person>().findAll()
+        val person1 = realm.where<Person>().equalTo("name", "John Doe").findFirst()
+        val person2 = realm.where<Person>().equalTo("name", "Mary Sue").findFirst()
+        val person3 = realm.where<Person>().equalTo("name", "John's Dad").findFirst()
+        val person4 = realm.where<Person>().equalTo("name", "John's Mom").findFirst()
+        val person5 = realm.where<Person>().equalTo("name", "Mary's Dad").findFirst()
+        val person6 = realm.where<Person>().equalTo("name", "Mary's Mom").findFirst()
+        val person7 = realm.where<Person>().equalTo("name", "John's and Mary's Son").findFirst()
+        Log.i(this::class.java.name, "DEBUG")
     }
 
     override fun onDestroy() {
