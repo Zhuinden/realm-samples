@@ -6,6 +6,7 @@ import io.realm.RealmResults
 import io.realm.annotations.Index
 import io.realm.annotations.LinkingObjects
 import io.realm.annotations.PrimaryKey
+import java.util.*
 
 /**
  * Created by Zhuinden on 2017.12.09..
@@ -19,6 +20,10 @@ open class Person : RealmObject() {
 
     @Index
     var age: Int = 0 // implicitly @Required
+
+    var birthday: Date? = null
+
+    var image: ByteArray? = null
 
     var phoneNumbers: RealmList<String>? = null
 
