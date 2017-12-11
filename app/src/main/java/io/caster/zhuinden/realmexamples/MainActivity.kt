@@ -31,6 +31,10 @@ class MainActivity : AppCompatActivity() {
         others.forEach {
             Log.i(this@MainActivity::class.java.name, "Others person name: ${it.name}")
         }
+        val filteredOthers = others.where().contains(PersonFields.NAME, "Mom", Case.INSENSITIVE).findAll()
+        filteredOthers.forEach {
+            Log.i(this@MainActivity::class.java.name, "Filtered others person name: ${it.name}")
+        }
 
         val linked = realm.where<Person>()
                 .greaterThan(PersonFields.PARENTS.AGE, 7)
