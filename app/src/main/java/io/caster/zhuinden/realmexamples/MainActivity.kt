@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val realm = Realm.getDefaultInstance()
         this.realm = realm
-        val persons = realm.where<Person>().lessThan(PersonFields.NAME, 40).findAll()
+        val persons = realm.where<Person>().lessThan(PersonFields.AGE, 40).findAll()
         persons.forEach {
             Log.i(this@MainActivity::class.java.name, "Person name: ${it.name}")
         }
@@ -45,6 +45,7 @@ class MainActivity : AppCompatActivity() {
         backlinked.forEach {
             Log.i(this@MainActivity::class.java.name, "Backlinked person name: ${it.name}")
         }
+
     }
 
     override fun onDestroy() {
